@@ -30,7 +30,7 @@ namespace SpaceInvader
             Input.Initialize(); // Sets up the input library
 
             // Set window size if running debug (in release it will be fullscreen)
-            #region
+            #region Setting Window Size
 #if DEBUG
             _graphics.PreferredBackBufferWidth = 420;
             _graphics.PreferredBackBufferHeight = 980;
