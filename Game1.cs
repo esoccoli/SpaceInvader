@@ -7,14 +7,22 @@ namespace SpaceInvader
 {
     public class Game1 : Game
     {
+        public static Game1 game;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        public InputManager inputMan;
+        private Rectangle windowSize;
+
+        private Ship spaceShip;
+        private Texture2D shipTexture;
+        private Vector2 shipPos;
 
         /// <summary>
         /// Game constructor
         /// </summary>
         public Game1()
         {
+            game = this;
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -42,6 +50,9 @@ namespace SpaceInvader
 #endif
             #endregion
 
+            windowSize = GraphicsDevice.Viewport.Bounds;
+            inputMan = new InputManager();
+            shipPos = new Vector2((windowSize.Width / 2) - 64, windowSize.Height - 200);
             base.Initialize();
         }
 
@@ -53,6 +64,8 @@ namespace SpaceInvader
             // TODO: use this.Content to load your game content here
             // ex.
             // texture = Content.Load<Texture2D>("fileNameWithoutExtention");
+            shipTexture = Content.Load<Texture2D>("spaceship");
+            spaceShip = new Ship(shipPos, shipTexture);
         }
 
         /// <summary>
@@ -73,6 +86,10 @@ namespace SpaceInvader
                 Exit();
             }
 
+            inputMan.UpdateInputs();
+
+            spaceShip.Update(gameTime, _spriteBatch);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -88,6 +105,7 @@ namespace SpaceInvader
 
             _spriteBatch.Begin();
             // TODO: Add your drawing code here
+            spaceShip.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
