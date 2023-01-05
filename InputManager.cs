@@ -20,6 +20,7 @@ namespace SpaceInvader
         public bool RightArrow { get; set; }
         public bool UpArrow { get; set; }
         public bool DownArrow { get; set; }
+        public bool Spacebar { get; set; }
 
         // WASD
         public bool WKey { get; set; }
@@ -72,7 +73,7 @@ namespace SpaceInvader
             AKey = Keyboard.GetState().IsKeyDown(Keys.A);
             SKey = Keyboard.GetState().IsKeyDown(Keys.S);
             DKey = Keyboard.GetState().IsKeyDown(Keys.D);
-
+            Spacebar = Keyboard.GetState().IsKeyDown(Keys.Space);
             // Devcade Player 1
             P1A1 = Input.GetButton(0, Input.ArcadeButtons.A1);
             P1A2 = Input.GetButton(0, Input.ArcadeButtons.A2);
